@@ -34,6 +34,8 @@ namespace _3DRRadio
 
             MissionPlanner._3DRradio form = new MissionPlanner._3DRradio();
 
+            form.Dock = DockStyle.Fill;
+
             panel1.Controls.Add(form);
 
             MissionPlanner.Utilities.ThemeManager.SetTheme(MissionPlanner.Utilities.ThemeManager.Themes.None);

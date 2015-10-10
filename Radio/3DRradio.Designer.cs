@@ -96,26 +96,31 @@
             this.label20 = new System.Windows.Forms.Label();
             this.Progressbar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.RSSI = new System.Windows.Forms.TextBox();
+            this.LRSSI = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.RRSSI = new System.Windows.Forms.TextBox();
+            this.History = new System.Windows.Forms.TextBox();
             this.RTI = new System.Windows.Forms.TextBox();
             this.ATI = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
-            this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
             this.lbl_status = new System.Windows.Forms.Label();
-            this.BUT_upload = new MissionPlanner.Controls.MyButton();
-            this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
             this.ATI3 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ATI2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelRRSSI = new System.Windows.Forms.Label();
+            this.RTI3 = new System.Windows.Forms.TextBox();
             this.RTI2 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
+            this.labelNote = new System.Windows.Forms.Label();
             this.BUT_loadcustom = new MissionPlanner.Controls.MyButton();
+            this.BUT_resettodefault = new MissionPlanner.Controls.MyButton();
+            this.BUT_savesettings = new MissionPlanner.Controls.MyButton();
+            this.BUT_getcurrent = new MissionPlanner.Controls.MyButton();
+            this.BUT_upload = new MissionPlanner.Controls.MyButton();
+            this.BUT_Syncoptions = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.SPLIT_local)).BeginInit();
             this.SPLIT_local.Panel1.SuspendLayout();
             this.SPLIT_local.Panel2.SuspendLayout();
@@ -135,7 +140,6 @@
             // 
             // SPLIT_local.Panel1
             // 
-            resources.ApplyResources(this.SPLIT_local.Panel1, "SPLIT_local.Panel1");
             this.SPLIT_local.Panel1.Controls.Add(this.S6);
             this.SPLIT_local.Panel1.Controls.Add(this.label2);
             this.SPLIT_local.Panel1.Controls.Add(this.S1);
@@ -152,11 +156,9 @@
             this.SPLIT_local.Panel1.Controls.Add(this.label8);
             this.SPLIT_local.Panel1.Controls.Add(this.S7);
             this.SPLIT_local.Panel1.Controls.Add(this.label7);
-            this.toolTip1.SetToolTip(this.SPLIT_local.Panel1, resources.GetString("SPLIT_local.Panel1.ToolTip"));
             // 
             // SPLIT_local.Panel2
             // 
-            resources.ApplyResources(this.SPLIT_local.Panel2, "SPLIT_local.Panel2");
             this.SPLIT_local.Panel2.Controls.Add(this.S14);
             this.SPLIT_local.Panel2.Controls.Add(this.label19);
             this.SPLIT_local.Panel2.Controls.Add(this.linkLabel_mavlink);
@@ -173,8 +175,6 @@
             this.SPLIT_local.Panel2.Controls.Add(this.S8);
             this.SPLIT_local.Panel2.Controls.Add(this.label15);
             this.SPLIT_local.Panel2.Controls.Add(this.label14);
-            this.toolTip1.SetToolTip(this.SPLIT_local.Panel2, resources.GetString("SPLIT_local.Panel2.ToolTip"));
-            this.toolTip1.SetToolTip(this.SPLIT_local, resources.GetString("SPLIT_local.ToolTip"));
             // 
             // S6
             // 
@@ -187,7 +187,6 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // S1
             // 
@@ -210,14 +209,12 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // S0
             // 
             resources.ApplyResources(this.S0, "S0");
             this.S0.Name = "S0";
             this.S0.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.S0, resources.GetString("S0.ToolTip"));
             // 
             // S2
             // 
@@ -244,7 +241,6 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // S3
             // 
@@ -288,7 +284,6 @@
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // S4
             // 
@@ -310,7 +305,6 @@
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
             // 
             // S5
             // 
@@ -322,13 +316,11 @@
             // 
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
             // 
             // S7
             // 
@@ -340,7 +332,6 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
             // 
             // S14
             // 
@@ -352,14 +343,12 @@
             // 
             resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
-            this.toolTip1.SetToolTip(this.label19, resources.GetString("label19.ToolTip"));
             // 
             // linkLabel_mavlink
             // 
             resources.ApplyResources(this.linkLabel_mavlink, "linkLabel_mavlink");
             this.linkLabel_mavlink.Name = "linkLabel_mavlink";
             this.linkLabel_mavlink.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel_mavlink, resources.GetString("linkLabel_mavlink.ToolTip"));
             this.linkLabel_mavlink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_mavlink_LinkClicked);
             // 
             // linkLabel_lowlatency
@@ -367,14 +356,12 @@
             resources.ApplyResources(this.linkLabel_lowlatency, "linkLabel_lowlatency");
             this.linkLabel_lowlatency.Name = "linkLabel_lowlatency";
             this.linkLabel_lowlatency.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel_lowlatency, resources.GetString("linkLabel_lowlatency.ToolTip"));
             this.linkLabel_lowlatency.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_lowlatency_LinkClicked);
             // 
             // label18
             // 
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
-            this.toolTip1.SetToolTip(this.label18, resources.GetString("label18.ToolTip"));
             // 
             // S15
             // 
@@ -419,7 +406,6 @@
             // 
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            this.toolTip1.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
             // S9
             // 
@@ -487,7 +473,6 @@
             // 
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.toolTip1.SetToolTip(this.label17, resources.GetString("label17.ToolTip"));
             // 
             // S12
             // 
@@ -503,7 +488,6 @@
             // 
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            this.toolTip1.SetToolTip(this.label16, resources.GetString("label16.ToolTip"));
             // 
             // S8
             // 
@@ -529,13 +513,11 @@
             // 
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
             // 
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
             // 
             // SPLIT_remote
             // 
@@ -544,7 +526,6 @@
             // 
             // SPLIT_remote.Panel1
             // 
-            resources.ApplyResources(this.SPLIT_remote.Panel1, "SPLIT_remote.Panel1");
             this.SPLIT_remote.Panel1.Controls.Add(this.RS6);
             this.SPLIT_remote.Panel1.Controls.Add(this.RS0);
             this.SPLIT_remote.Panel1.Controls.Add(this.RS1);
@@ -561,11 +542,9 @@
             this.SPLIT_remote.Panel1.Controls.Add(this.label32);
             this.SPLIT_remote.Panel1.Controls.Add(this.label30);
             this.SPLIT_remote.Panel1.Controls.Add(this.label31);
-            this.toolTip1.SetToolTip(this.SPLIT_remote.Panel1, resources.GetString("SPLIT_remote.Panel1.ToolTip"));
             // 
             // SPLIT_remote.Panel2
             // 
-            resources.ApplyResources(this.SPLIT_remote.Panel2, "SPLIT_remote.Panel2");
             this.SPLIT_remote.Panel2.Controls.Add(this.RS14);
             this.SPLIT_remote.Panel2.Controls.Add(this.label33);
             this.SPLIT_remote.Panel2.Controls.Add(this.label34);
@@ -580,8 +559,6 @@
             this.SPLIT_remote.Panel2.Controls.Add(this.label22);
             this.SPLIT_remote.Panel2.Controls.Add(this.label21);
             this.SPLIT_remote.Panel2.Controls.Add(this.label20);
-            this.toolTip1.SetToolTip(this.SPLIT_remote.Panel2, resources.GetString("SPLIT_remote.Panel2.ToolTip"));
-            this.toolTip1.SetToolTip(this.SPLIT_remote, resources.GetString("SPLIT_remote.ToolTip"));
             // 
             // RS6
             // 
@@ -595,7 +572,6 @@
             resources.ApplyResources(this.RS0, "RS0");
             this.RS0.Name = "RS0";
             this.RS0.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RS0, resources.GetString("RS0.ToolTip"));
             // 
             // RS1
             // 
@@ -677,7 +653,6 @@
             // 
             resources.ApplyResources(this.label25, "label25");
             this.label25.Name = "label25";
-            this.toolTip1.SetToolTip(this.label25, resources.GetString("label25.ToolTip"));
             // 
             // RS4
             // 
@@ -699,7 +674,6 @@
             // 
             resources.ApplyResources(this.label26, "label26");
             this.label26.Name = "label26";
-            this.toolTip1.SetToolTip(this.label26, resources.GetString("label26.ToolTip"));
             // 
             // RS5
             // 
@@ -711,13 +685,11 @@
             // 
             resources.ApplyResources(this.label27, "label27");
             this.label27.Name = "label27";
-            this.toolTip1.SetToolTip(this.label27, resources.GetString("label27.ToolTip"));
             // 
             // label28
             // 
             resources.ApplyResources(this.label28, "label28");
             this.label28.Name = "label28";
-            this.toolTip1.SetToolTip(this.label28, resources.GetString("label28.ToolTip"));
             // 
             // RS7
             // 
@@ -729,25 +701,21 @@
             // 
             resources.ApplyResources(this.label29, "label29");
             this.label29.Name = "label29";
-            this.toolTip1.SetToolTip(this.label29, resources.GetString("label29.ToolTip"));
             // 
             // label32
             // 
             resources.ApplyResources(this.label32, "label32");
             this.label32.Name = "label32";
-            this.toolTip1.SetToolTip(this.label32, resources.GetString("label32.ToolTip"));
             // 
             // label30
             // 
             resources.ApplyResources(this.label30, "label30");
             this.label30.Name = "label30";
-            this.toolTip1.SetToolTip(this.label30, resources.GetString("label30.ToolTip"));
             // 
             // label31
             // 
             resources.ApplyResources(this.label31, "label31");
             this.label31.Name = "label31";
-            this.toolTip1.SetToolTip(this.label31, resources.GetString("label31.ToolTip"));
             // 
             // RS14
             // 
@@ -759,13 +727,11 @@
             // 
             resources.ApplyResources(this.label33, "label33");
             this.label33.Name = "label33";
-            this.toolTip1.SetToolTip(this.label33, resources.GetString("label33.ToolTip"));
             // 
             // label34
             // 
             resources.ApplyResources(this.label34, "label34");
             this.label34.Name = "label34";
-            this.toolTip1.SetToolTip(this.label34, resources.GetString("label34.ToolTip"));
             // 
             // RS15
             // 
@@ -810,7 +776,6 @@
             // 
             resources.ApplyResources(this.label24, "label24");
             this.label24.Name = "label24";
-            this.toolTip1.SetToolTip(this.label24, resources.GetString("label24.ToolTip"));
             // 
             // RS9
             // 
@@ -905,39 +870,34 @@
             // 
             resources.ApplyResources(this.label23, "label23");
             this.label23.Name = "label23";
-            this.toolTip1.SetToolTip(this.label23, resources.GetString("label23.ToolTip"));
             // 
             // label22
             // 
             resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
-            this.toolTip1.SetToolTip(this.label22, resources.GetString("label22.ToolTip"));
             // 
             // label21
             // 
             resources.ApplyResources(this.label21, "label21");
             this.label21.Name = "label21";
-            this.toolTip1.SetToolTip(this.label21, resources.GetString("label21.ToolTip"));
             // 
             // label20
             // 
             resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
-            this.toolTip1.SetToolTip(this.label20, resources.GetString("label20.ToolTip"));
             // 
             // Progressbar
             // 
             resources.ApplyResources(this.Progressbar, "Progressbar");
             this.Progressbar.Name = "Progressbar";
-            this.toolTip1.SetToolTip(this.Progressbar, resources.GetString("Progressbar.ToolTip"));
             this.Progressbar.Click += new System.EventHandler(this.Progressbar_Click);
             // 
-            // RSSI
+            // LRSSI
             // 
-            resources.ApplyResources(this.RSSI, "RSSI");
-            this.RSSI.Name = "RSSI";
-            this.RSSI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RSSI, resources.GetString("RSSI.ToolTip"));
+            resources.ApplyResources(this.LRSSI, "LRSSI");
+            this.LRSSI.Name = "LRSSI";
+            this.LRSSI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.LRSSI, resources.GetString("LRSSI.ToolTip"));
             // 
             // linkLabel1
             // 
@@ -947,37 +907,137 @@
             this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // RRSSI
+            // 
+            resources.ApplyResources(this.RRSSI, "RRSSI");
+            this.RRSSI.Name = "RRSSI";
+            this.RRSSI.ReadOnly = true;
+            this.toolTip1.SetToolTip(this.RRSSI, resources.GetString("RRSSI.ToolTip"));
+            // 
+            // History
+            // 
+            this.History.AcceptsReturn = true;
+            resources.ApplyResources(this.History, "History");
+            this.History.Name = "History";
+            this.History.ReadOnly = true;
+            // 
             // RTI
             // 
             resources.ApplyResources(this.RTI, "RTI");
             this.RTI.Name = "RTI";
             this.RTI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RTI, resources.GetString("RTI.ToolTip"));
             // 
             // ATI
             // 
             resources.ApplyResources(this.ATI, "ATI");
             this.ATI.Name = "ATI";
             this.ATI.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI, resources.GetString("ATI.ToolTip"));
             // 
             // label11
             // 
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
             // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.toolTip1.SetToolTip(this.label12, resources.GetString("label12.ToolTip"));
+            // 
+            // lbl_status
+            // 
+            this.lbl_status.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.lbl_status, "lbl_status");
+            this.lbl_status.Name = "lbl_status";
+            // 
+            // ATI3
+            // 
+            resources.ApplyResources(this.ATI3, "ATI3");
+            this.ATI3.Name = "ATI3";
+            this.ATI3.ReadOnly = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ATI2);
+            this.groupBox1.Controls.Add(this.SPLIT_local);
+            this.groupBox1.Controls.Add(this.ATI3);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.ATI);
+            this.groupBox1.Controls.Add(this.LRSSI);
+            this.groupBox1.Controls.Add(this.label12);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // ATI2
+            // 
+            resources.ApplyResources(this.ATI2, "ATI2");
+            this.ATI2.Name = "ATI2";
+            this.ATI2.ReadOnly = true;
+            // 
+            // groupBox2
+            // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.RRSSI);
+            this.groupBox2.Controls.Add(this.labelRRSSI);
+            this.groupBox2.Controls.Add(this.RTI3);
+            this.groupBox2.Controls.Add(this.RTI2);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.SPLIT_remote);
+            this.groupBox2.Controls.Add(this.RTI);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // labelRRSSI
+            // 
+            resources.ApplyResources(this.labelRRSSI, "labelRRSSI");
+            this.labelRRSSI.Name = "labelRRSSI";
+            // 
+            // RTI3
+            // 
+            resources.ApplyResources(this.RTI3, "RTI3");
+            this.RTI3.Name = "RTI3";
+            this.RTI3.ReadOnly = true;
+            // 
+            // RTI2
+            // 
+            resources.ApplyResources(this.RTI2, "RTI2");
+            this.RTI2.Name = "RTI2";
+            this.RTI2.ReadOnly = true;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // labelNote
+            // 
+            this.labelNote.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.labelNote, "labelNote");
+            this.labelNote.Name = "labelNote";
+            // 
+            // BUT_loadcustom
+            // 
+            resources.ApplyResources(this.BUT_loadcustom, "BUT_loadcustom");
+            this.BUT_loadcustom.Name = "BUT_loadcustom";
+            this.BUT_loadcustom.UseVisualStyleBackColor = true;
+            this.BUT_loadcustom.Click += new System.EventHandler(this.BUT_loadcustom_Click);
+            // 
+            // BUT_resettodefault
+            // 
+            resources.ApplyResources(this.BUT_resettodefault, "BUT_resettodefault");
+            this.BUT_resettodefault.Name = "BUT_resettodefault";
+            this.BUT_resettodefault.UseVisualStyleBackColor = true;
+            this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
             // 
             // BUT_savesettings
             // 
             resources.ApplyResources(this.BUT_savesettings, "BUT_savesettings");
             this.BUT_savesettings.Name = "BUT_savesettings";
-            this.toolTip1.SetToolTip(this.BUT_savesettings, resources.GetString("BUT_savesettings.ToolTip"));
             this.BUT_savesettings.UseVisualStyleBackColor = true;
             this.BUT_savesettings.Click += new System.EventHandler(this.BUT_savesettings_Click);
             // 
@@ -985,22 +1045,13 @@
             // 
             resources.ApplyResources(this.BUT_getcurrent, "BUT_getcurrent");
             this.BUT_getcurrent.Name = "BUT_getcurrent";
-            this.toolTip1.SetToolTip(this.BUT_getcurrent, resources.GetString("BUT_getcurrent.ToolTip"));
             this.BUT_getcurrent.UseVisualStyleBackColor = true;
             this.BUT_getcurrent.Click += new System.EventHandler(this.BUT_getcurrent_Click);
-            // 
-            // lbl_status
-            // 
-            resources.ApplyResources(this.lbl_status, "lbl_status");
-            this.lbl_status.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_status.Name = "lbl_status";
-            this.toolTip1.SetToolTip(this.lbl_status, resources.GetString("lbl_status.ToolTip"));
             // 
             // BUT_upload
             // 
             resources.ApplyResources(this.BUT_upload, "BUT_upload");
             this.BUT_upload.Name = "BUT_upload";
-            this.toolTip1.SetToolTip(this.BUT_upload, resources.GetString("BUT_upload.ToolTip"));
             this.BUT_upload.UseVisualStyleBackColor = true;
             this.BUT_upload.Click += new System.EventHandler(this.BUT_upload_Click);
             // 
@@ -1008,88 +1059,15 @@
             // 
             resources.ApplyResources(this.BUT_Syncoptions, "BUT_Syncoptions");
             this.BUT_Syncoptions.Name = "BUT_Syncoptions";
-            this.toolTip1.SetToolTip(this.BUT_Syncoptions, resources.GetString("BUT_Syncoptions.ToolTip"));
             this.BUT_Syncoptions.UseVisualStyleBackColor = true;
             this.BUT_Syncoptions.Click += new System.EventHandler(this.BUT_Syncoptions_Click);
-            // 
-            // ATI3
-            // 
-            resources.ApplyResources(this.ATI3, "ATI3");
-            this.ATI3.Name = "ATI3";
-            this.ATI3.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI3, resources.GetString("ATI3.ToolTip"));
-            // 
-            // groupBox1
-            // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.ATI2);
-            this.groupBox1.Controls.Add(this.SPLIT_local);
-            this.groupBox1.Controls.Add(this.ATI3);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.ATI);
-            this.groupBox1.Controls.Add(this.RSSI);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
-            // 
-            // ATI2
-            // 
-            resources.ApplyResources(this.ATI2, "ATI2");
-            this.ATI2.Name = "ATI2";
-            this.ATI2.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.ATI2, resources.GetString("ATI2.ToolTip"));
-            // 
-            // groupBox2
-            // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Controls.Add(this.RTI2);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.SPLIT_remote);
-            this.groupBox2.Controls.Add(this.RTI);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
-            // 
-            // RTI2
-            // 
-            resources.ApplyResources(this.RTI2, "RTI2");
-            this.RTI2.Name = "RTI2";
-            this.RTI2.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.RTI2, resources.GetString("RTI2.ToolTip"));
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
-            // 
-            // BUT_resettodefault
-            // 
-            resources.ApplyResources(this.BUT_resettodefault, "BUT_resettodefault");
-            this.BUT_resettodefault.Name = "BUT_resettodefault";
-            this.toolTip1.SetToolTip(this.BUT_resettodefault, resources.GetString("BUT_resettodefault.ToolTip"));
-            this.BUT_resettodefault.UseVisualStyleBackColor = true;
-            this.BUT_resettodefault.Click += new System.EventHandler(this.BUT_resettodefault_Click);
-            // 
-            // BUT_loadcustom
-            // 
-            resources.ApplyResources(this.BUT_loadcustom, "BUT_loadcustom");
-            this.BUT_loadcustom.Name = "BUT_loadcustom";
-            this.toolTip1.SetToolTip(this.BUT_loadcustom, resources.GetString("BUT_loadcustom.ToolTip"));
-            this.BUT_loadcustom.UseVisualStyleBackColor = true;
-            this.BUT_loadcustom.Click += new System.EventHandler(this.BUT_loadcustom_Click);
             // 
             // _3DRradio
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelNote);
+            this.Controls.Add(this.History);
             this.Controls.Add(this.BUT_loadcustom);
             this.Controls.Add(this.BUT_resettodefault);
             this.Controls.Add(this.linkLabel1);
@@ -1102,9 +1080,9 @@
             this.Controls.Add(this.lbl_status);
             this.Controls.Add(this.Progressbar);
             this.Controls.Add(this.BUT_upload);
-            this.MinimumSize = new System.Drawing.Size(781, 400);
+            this.MaximumSize = new System.Drawing.Size(782, 0);
+            this.MinimumSize = new System.Drawing.Size(782, 557);
             this.Name = "_3DRradio";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.SPLIT_local.Panel1.ResumeLayout(false);
             this.SPLIT_local.Panel1.PerformLayout();
             this.SPLIT_local.Panel2.ResumeLayout(false);
@@ -1158,7 +1136,7 @@
         private System.Windows.Forms.ComboBox RS1;
         private System.Windows.Forms.TextBox RTI;
         private System.Windows.Forms.TextBox ATI;
-        private System.Windows.Forms.TextBox RSSI;
+        private System.Windows.Forms.TextBox LRSSI;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox S9;
@@ -1214,5 +1192,10 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox RS14;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox RTI3;
+        private System.Windows.Forms.TextBox History;
+        private System.Windows.Forms.TextBox RRSSI;
+        private System.Windows.Forms.Label labelRRSSI;
+        private System.Windows.Forms.Label labelNote;
     }
 }

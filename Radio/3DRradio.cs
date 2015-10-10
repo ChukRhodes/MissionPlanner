@@ -52,6 +52,27 @@ S12: LBT_RSSI=0
 S13: MANCHESTER=0
 S14: RTSCTS=0
 S15: MAX_WINDOW=131
+
+        MultiPoint Firmware
+S0: FORMAT=27
+S1: SERIAL_SPEED=57
+S2: AIR_SPEED=64
+S3: NETID=40
+S4: TXPOWER=30
+S5: ECC=0                   // Seems disabled in FW for all hardware
+S6: MAVLINK=1
+S7: OPPRESEND=1
+S8: MIN_FREQ=915000
+S9: MAX_FREQ=928000
+S10: NUM_CHANNELS=50
+S11: DUTY_CYCLE=100
+S12: LBT_RSSI=0
+S13: MANCHESTER=0
+S14: RTSCTS=0
+S15: NODEID=1
+S16: NODEDESTINATION=65535
+S17: SYNCANY=0
+S18: NODECOUNT=4
          */
 
         public _3DRradio()
@@ -77,6 +98,7 @@ S15: MAX_WINDOW=131
             RS6.ValueMember = "Key";
             RS6.DataSource = dict.ToArray();
 
+            // S15 changes by FORMAT
             S15.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
             RS15.DataSource = Enumerable.Range(33, 131 - 32).ToArray();
         }
@@ -385,6 +407,41 @@ S15: MAX_WINDOW=131
             catch { }
         }
 
+        /// <summary>
+        /// Log to various places
+        /// </summary>
+        /// <param name="message">Text to display</param>
+        /// <param name="level">0 = log.Info only, 1 = UI only, 2 = UI and log.Info, 3 = UI / log.Info / Console</param>
+        void comLog(string message, int level = 0)
+        {
+            try
+            {
+                if (level == 0)
+                {
+                    log.Info(message);
+                }
+                if (level == 1)
+                {
+                    lbl_status.Text = message;
+                    Application.DoEvents();
+                }
+                if (level == 2)
+                {
+                    lbl_status.Text = message;
+                    log.Info(message);
+                    Application.DoEvents();
+                }
+                if (level == 3)
+                {
+                    Console.Write(message);
+                    lbl_status.Text = message;
+                    log.Info(message);
+                    Application.DoEvents();
+                }
+            }
+            catch { }
+        }
+
         void uploader_ProgressEvent(double completed)
         {
             try
@@ -421,7 +478,7 @@ S15: MAX_WINDOW=131
             }
             catch { CustomMessageBox.Show("Invalid ComPort or in use"); return; }
 
-            lbl_status.Text = "Connecting";
+            comLog("Connecting", 1);
 
             if (doConnect(comPort))
             {
@@ -429,8 +486,6 @@ S15: MAX_WINDOW=131
                 doCommand(comPort, "AT&T");
 
                 comPort.DiscardInBuffer();
-
-                lbl_status.Text = "Doing Command";
 
                 if (RTI.Text != "")
                 {
@@ -665,8 +720,6 @@ S15: MAX_WINDOW=131
             }
             catch { CustomMessageBox.Show("Invalid ComPort or in use"); return; }
 
-            lbl_status.Text = "Connecting";
-
             try
             {
                 if (doConnect(comPort))
@@ -676,7 +729,7 @@ S15: MAX_WINDOW=131
 
                     comPort.DiscardInBuffer();
 
-                    lbl_status.Text = "Doing Command ATI & RTI";
+                    comLog("Doing Command ATI & RTI", 2);
 
                     ATI.Text = doCommand(comPort, "ATI");
 
@@ -729,9 +782,9 @@ S15: MAX_WINDOW=131
                     }
 
 
-                    RSSI.Text = doCommand(comPort, "ATI7").Trim();
+                    LRSSI.Text = doCommand(comPort, "ATI7", true).Trim();
 
-                    lbl_status.Text = "Doing Command ATI5";
+                    comLog("Doing Command ATI5", 2);
 
                     string answer = doCommand(comPort, "ATI5", true);
 
@@ -782,7 +835,7 @@ S15: MAX_WINDOW=131
 
                     comPort.DiscardInBuffer();
 
-                    lbl_status.Text = "Doing Command RTI5";
+                    comLog("Doing Command RTI5", 2);
 
                     answer = doCommand(comPort, "RTI5", true);
 
@@ -843,7 +896,7 @@ S15: MAX_WINDOW=131
                     // off hook
                     doCommand(comPort, "ATO");
 
-                    lbl_status.Text = "Done";
+                    comLog("Done", 2);
                 }
                 else
                 {
@@ -851,7 +904,7 @@ S15: MAX_WINDOW=131
                     // off hook
                     doCommand(comPort, "ATO");
 
-                    lbl_status.Text = "Fail";
+                    comLog("Fail", 2);
                     CustomMessageBox.Show("Failed to enter command mode");
                 }
 
@@ -869,7 +922,7 @@ S15: MAX_WINDOW=131
                         comPort.Close();
                 }
                 catch { }
-                lbl_status.Text = "Error";
+                comLog("Error", 2);
                 CustomMessageBox.Show("Error during read " + ex.ToString());
                 return;
             }
@@ -894,6 +947,26 @@ S15: MAX_WINDOW=131
             return sb.ToString();
         }
 
+        public string trimResponse(string line)
+        {
+            // Find nodeId (for later use)
+            Regex nodeMatch = new Regex(@"\[(\d)\]\s*");
+            string nodeId = nodeMatch.Match(line).Groups[1].ToString();
+
+            // Trim prefix
+            Regex trimMatch = new Regex(@"(\[\d\]\s*)");
+            Match trimed = trimMatch.Match(line);
+            if (trimed.Success)
+                line = line.Replace(trimed.Groups[1].ToString(), "");
+
+            char[] ends = { '\r', '\n' };
+            comLog("TRIM " + trimed.Success + "   " + "nodeId='" + nodeId + "' trimed='" + trimed + "' Response = '" + line.TrimEnd(ends) + "'");
+            
+            // line should now be the same as expected even without multi point prefix
+
+            return line;
+        }
+
         public string doCommand(ICommsSerial comPort, string cmd, bool multiLineResponce = false, int level = 0)
         {
             if (!comPort.IsOpen)
@@ -901,9 +974,8 @@ S15: MAX_WINDOW=131
 
             comPort.DiscardInBuffer();
 
-            lbl_status.Text = "Doing Command " + cmd;
-            log.Info("Doing Command " + cmd);
-
+            comLog("Doing Command " + cmd, 1);
+            
             comPort.Write(cmd + "\r\n");
 
             comPort.ReadTimeout = 1000;
@@ -922,22 +994,23 @@ S15: MAX_WINDOW=131
                     {
                         try
                         {
-                            value = value + Serial_ReadLine(comPort);
+                            value = value + trimResponse(Serial_ReadLine(comPort));
                         }
-                        catch { value = value + comPort.ReadExisting(); }
+                        catch { value = value + trimResponse(comPort.ReadExisting()); }
                     }
                 }
                 else
                 {
-                    value = Serial_ReadLine(comPort);
+                    value = trimResponse(Serial_ReadLine(comPort));
 
                     if (value == "" && level == 0)
                     {
-                        return doCommand(comPort, cmd, multiLineResponce, 1);
+                        return trimResponse(doCommand(comPort, cmd, multiLineResponce, 1));
                     }
                 }
-
-                log.Info(value.Replace('\0', ' '));
+                char[] ends = { '\r', '\n' };
+                comLog(value.TrimEnd(ends), 1);
+                History.AppendText(cmd.Trim() + " " + value.TrimEnd(ends) + Environment.NewLine);
 
                 return value;
             }
@@ -946,16 +1019,18 @@ S15: MAX_WINDOW=131
 
             // try again
             if (level == 0)
-                return doCommand(comPort, cmd, multiLineResponce, 1);
+                return trimResponse(doCommand(comPort, cmd, multiLineResponce, 1));
 
             return "";
         }
 
         public bool doConnect(ICommsSerial comPort)
         {
+            char[] ends = { '\r', '\n' };
+
             try
             {
-                Console.WriteLine("doConnect");
+                comLog("Connecting", 2);
 
                 int trys = 1;
 
@@ -971,19 +1046,20 @@ S15: MAX_WINDOW=131
                 comPort.Write("+++");
                 Sleep(1500,comPort);
                 // check for config response "OK"
-                log.Info("Connect btr " + comPort.BytesToRead + " baud " + comPort.BaudRate);
+                comLog("Connect btr " + comPort.BytesToRead + " baud " + comPort.BaudRate, 2);
                 // allow time for data/response
                 
                 if (comPort.BytesToRead == 0 && trys <= 3) {
                     trys++;
-                    log.Info("doConnect retry");
+                    comLog("doConnect retry", 2);
                         goto retry;
                 }
 
                 byte[] buffer = new byte[20];
                 int len = comPort.Read(buffer, 0, buffer.Length);
                 string conn = ASCIIEncoding.ASCII.GetString(buffer, 0, len);
-                log.Info("Connect first response " + conn.Replace('\0', ' ') + " " + conn.Length);
+                comLog("Connect first response " + conn.TrimEnd(ends) + " " + conn.Length);
+
                 if (conn.Contains("OK"))
                 {
                     //return true;
@@ -998,15 +1074,15 @@ S15: MAX_WINDOW=131
 
                 string version = doCommand(comPort, "ATI");
 
-                log.Info("Connect Version: " + version.Trim() + "\n");
-
                 Regex regex = new Regex(@"SiK\s+(.*)\s+on\s+(.*)");
 
                 if (regex.IsMatch(version))
                 {
+                    comLog("Connected: " + version.TrimEnd(ends), 2);
                     return true;
                 }
 
+                comLog("Connect Version: " + version.TrimEnd(ends));
                 return false;
             }
             catch { return false; }
@@ -1050,22 +1126,22 @@ red LED solid - in firmware update mode");
             }
             catch { CustomMessageBox.Show("Invalid ComPort or in use"); return; }
 
-            lbl_status.Text = "Connecting";
+            comLog("Connecting", 2);
 
             if (doConnect(comPort))
             {
                 // cleanup
-                doCommand(comPort, "AT&T");
+                doCommand(comPort, "AT&T"); // Disbale test modes
 
                 comPort.DiscardInBuffer();
 
-                lbl_status.Text = "Doing Command ATI & AT&F";
+                comLog("Doing Command ATI & AT&F", 1);
 
-                doCommand(comPort, "AT&F");
+                doCommand(comPort, "AT&F"); // Load default params
 
-                doCommand(comPort, "AT&W");
+                doCommand(comPort, "AT&W"); // Save params
 
-                lbl_status.Text = "Reset";
+                comLog("Reset", 2);
 
                 doCommand(comPort, "ATZ");
 
@@ -1079,8 +1155,8 @@ red LED solid - in firmware update mode");
                 // off hook
                 doCommand(comPort, "ATO");
 
-                lbl_status.Text = "Fail";
-                CustomMessageBox.Show("Failed to enter command mode");
+                comLog("Fail", 2);
+                History.AppendText("Failed to enter command mode\n");
             }
 
             if (comPort.IsOpen)

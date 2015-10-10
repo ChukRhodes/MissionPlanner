@@ -43,7 +43,7 @@
             this.TXT_terminal.ForeColor = System.Drawing.Color.White;
             this.TXT_terminal.Location = new System.Drawing.Point(0, 0);
             this.TXT_terminal.Name = "TXT_terminal";
-            this.TXT_terminal.Size = new System.Drawing.Size(630, 469);
+            this.TXT_terminal.Size = new System.Drawing.Size(527, 498);
             this.TXT_terminal.TabIndex = 1;
             this.TXT_terminal.Text = "";
             this.TXT_terminal.Click += new System.EventHandler(this.TXT_terminal_Click);
@@ -54,10 +54,10 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(632, 0);
+            this.textBox1.Location = new System.Drawing.Point(533, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 466);
+            this.textBox1.Size = new System.Drawing.Size(246, 495);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
@@ -65,10 +65,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.TXT_terminal);
+            this.MaximumSize = new System.Drawing.Size(782, 0);
+            this.MinimumSize = new System.Drawing.Size(782, 498);
             this.Name = "Terminal";
-            this.Size = new System.Drawing.Size(752, 469);
+            this.Size = new System.Drawing.Size(782, 498);
             this.Load += new System.EventHandler(this.Terminal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
